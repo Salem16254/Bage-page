@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeskPro</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #101054, #280067);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Main Container */
+        .container {
+            text-align: center;
+        }
+
+        /* Header */
+        header h1 {
+            font-size: 48px;
+            color: #f78ef0;
+            text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        header p {
+            font-style: italic;
+            margin: 10px 0;
+        }
+
+        .learn-more {
+            font-size: 18px;
+            color: #ffd700;
+            cursor: pointer;
+            text-decoration: underline;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* Form Box */
+        .box {
+            background-color: #5a005a;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6);
+            margin-top: 20px;
+            width: 300px;
+            text-align: center;
+            margin-left: 100px;
+        }
+
+        .box input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .box label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .box button {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            color: #5a005a;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .box button:hover {
+            background-color: #fff;
+        }
+
+        /* Bag Page */
+        .bag-page {
+            width: 80%;
+            margin: 20px auto;
+            text-align: left;
+        }
+
+        .search-bar {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            color: #5a005a;
+            font-weight: bold;
+        }
+
+        .book-list, .notebook-list {
+            margin-top: 20px;
+        }
+
+        .book {
+            padding: 10px;
+            background-color: #5a005a;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .book span {
+            color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Initial Home Page -->
+    <div class="container" id="home-page">
+        <header>
+            <h1>Welcome to DeskPro!</h1>
+            <p>“Carry less Learn more”</p>
+            <span class="learn-more" onclick="showLearnMore()">Learn more</span>
+        </header>
+
+        <!-- Sign-In Box -->
+        <div class="box">
+            <h2>Sign In</h2>
+            <input type="email" id="email" placeholder="Enter your email">
+            <input type="password" id="password" placeholder="Enter your password">
+            <label>
+                <input type="checkbox" id="remember-me">
+                Remember me
+            </label>
+            <button onclick="signIn()">Sign In</button>
+        </div>
+    </div>
+
+    <!-- Learn More Section -->
+    <div class="container hidden" id="learn-more-page">
+        <h1>Learn More About DeskPro</h1>
+        <p>Explore the features and benefits of DeskPro</p>
+        <button onclick="goBack()">Go Back</button>
+    </div>
+
+    <!-- Bag Page -->
+    <div class="bag-page hidden" id="bag-page">
+        <h1>Welcome to Your Bag</h1>
+        <div class="search-bar">
+            <input type="text" id="book-search" placeholder="Search for books...">
+            <button onclick="addBook()">Add Book</button>
+        </div>
+        <div>
+            <h2>Books in Your Bag:</h2>
+            <div id="book-list" class="book-list"></div>
+        </div>
+        <div>
+            <h2>Your Notebooks:</h2>
+            <div id="notebook-list" class="notebook-list"></div>
+        </div>
+    </div>
+
+    <script>
+        const validEmail = "user@example.com";
+        const validPassword = "password123";
+
+        function showLearnMore() {
+            document.getElementById("home-page").classList.add("hidden");
+            document.getElementById("learn-more-page").classList.remove("hidden");
+        }
+
+        function goBack() {
+            document.getElementById("learn-more-page").classList.add("hidden");
+            document.getElementById("home-page").classList.remove("hidden");
+        }
+
+        function signIn() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+
+            if (email === validEmail && password === validPassword) {
+                alert("Sign In Successful!");
+                document.getElementById("home-page").classList.add("hidden");
+                document.getElementById("bag-page").classList.remove("hidden");
+            } else {
+                alert("Invalid email or password!");
+            }
+        }
+    </script>
+</body>
+</html>
